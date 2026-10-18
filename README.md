@@ -10,6 +10,47 @@ chess-vision shot.png -f fen          # pretty | ascii | fen | links | json
 chess-vision shot.png --orientation black --castling KQkq
 ```
 
+## Install
+
+Prebuilt packages for macOS (Apple Silicon), Linux x86_64 and Linux arm64 (Arch: x86_64 only).
+
+**Homebrew** (macOS, Linux):
+
+```bash
+brew tap apiplant/tap
+brew install apiplant/tap/chess-vision-rs
+```
+
+**Debian/Ubuntu**, via the signed apt repository (one-time setup, then `apt upgrade` picks up releases):
+
+```bash
+curl -sSfL https://apt.apiplant.com/apiplant-archive-keyring.gpg | sudo tee /usr/share/keyrings/apiplant.gpg > /dev/null
+echo "deb [signed-by=/usr/share/keyrings/apiplant.gpg] https://apt.apiplant.com stable main" | sudo tee /etc/apt/sources.list.d/apiplant.list > /dev/null
+sudo apt update && sudo apt install chess-vision-rs
+```
+
+**Arch Linux**, via the signed pacman repository (one-time setup, then `pacman -Syu` picks up releases):
+
+```bash
+curl -sSfL https://apiplant.github.io/pacman/apiplant.gpg -o /tmp/apiplant.gpg
+keyid=$(gpg --show-keys --with-colons /tmp/apiplant.gpg | awk -F: '/^pub:/ { print $5; exit }') && sudo pacman-key --add /tmp/apiplant.gpg && sudo pacman-key --finger "$keyid" && sudo pacman-key --lsign-key "$keyid"
+printf '\n[apiplant]\nSigLevel = Required DatabaseOptional\nServer = https://apiplant.github.io/pacman/$arch\n' | sudo tee -a /etc/pacman.conf > /dev/null
+sudo pacman -Sy chess-vision-rs
+```
+
+**Single package, no repository:**
+
+```bash
+sudo dpkg -i chess-vision-rs_*_amd64.deb
+sudo pacman -U chess-vision-rs-*-x86_64.pkg.tar.zst
+```
+
+**Plain archive:** download and unpack the one for your platform from the [releases page](https://github.com/apiplant/chess-vision-rs/releases).
+
+**From source:** `cargo install --path .` (or `cargo build --release`).
+
+The models (~112 MB) are downloaded to `~/.cache/chess-vision` on first run; see Setup below. Release process: [`packaging/README.md`](packaging/README.md).
+
 ## Rendering
 
 Four styles (`--style`, default `art`); colour is automatic (off when piped or `NO_COLOR` is set), force with `--color always|never`.

@@ -25,6 +25,8 @@ env:
   # A release build is LTO + one codegen unit; the extra debug info earlier
   # stages emit is stripped anyway.
   CARGO_INCREMENTAL: 0
+  # The prebuilt ONNX Runtime is built for macOS 13.4+; matching it silences the linker's version warnings.
+  MACOSX_DEPLOYMENT_TARGET: "13.4"
   # workflow_dispatch has no tag ref: fall back to the tag input, or v0.0.0.
   TAG: ${{ github.ref_type == 'tag' && github.ref_name || inputs.tag || 'v0.0.0' }}
 
@@ -37,11 +39,11 @@ jobs:
       matrix:
         include:
           - target: x86_64-unknown-linux-gnu
-            os: ubuntu-22.04
+            os: ubuntu-24.04
             args: "--bins"
             bins: "chess-vision"
           - target: aarch64-unknown-linux-gnu
-            os: ubuntu-22.04-arm
+            os: ubuntu-24.04-arm
             args: "--bins"
             bins: "chess-vision"
           - target: aarch64-apple-darwin
