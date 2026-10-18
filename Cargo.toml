@@ -1,0 +1,19 @@
+[package]
+name = "chess-vision"
+version = "0.1.0"
+edition = "2021"
+description = "Chess board/piece detection (YOLOv8m) and FEN extraction on ONNX Runtime, with PaddleOCR board-label reading"
+license = "AGPL-3.0"
+
+[dependencies]
+anyhow = "1"
+clap = { version = "4", features = ["derive", "env"] }
+image = { version = "0.25", default-features = false, features = ["png", "jpeg", "bmp", "webp"] }
+ndarray = "0.17"
+ort = { version = "=2.0.0-rc.14", default-features = false, features = ["std", "ndarray", "download-binaries", "copy-dylibs", "half", "tls-native", "num-complex"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+ureq = "3"
+
+[profile.release]
+opt-level = 3
