@@ -3,7 +3,12 @@ name = "chess-vision"
 version = "0.1.0"
 edition = "2021"
 description = "Chess board/piece detection (YOLOv8m) and FEN extraction on ONNX Runtime, with PaddleOCR board-label reading"
-license = "AGPL-3.0"
+license = "AGPL-3.0-only"
+repository = "https://github.com/apiplant/chess-vision-rs"
+readme = "README.md"
+keywords = ["chess","fen","yolo","onnx","ocr"]
+categories = ["computer-vision","command-line-utilities"]
+exclude = ["/packaging/","/.github/","/model/"]
 
 [dependencies]
 anyhow = "1"
@@ -17,3 +22,5 @@ ureq = "3"
 
 [profile.release]
 opt-level = 3
+lto = true
+strip = true

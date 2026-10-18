@@ -1,0 +1,14 @@
+Package: chess-vision-rs
+Version: @VERSION@
+Section: utils
+Priority: optional
+Architecture: @ARCH@
+Maintainer: apiplant <releases@apiplant.com>
+Installed-Size: @INSTALLED_SIZE@
+Homepage: https://github.com/apiplant/chess-vision-rs
+Description: Recognise a chess position from an image and print FEN, Lichess links or a rendered board
+ chess-vision detects the board and pieces in a screenshot or photo with a
+ YOLOv8m model on ONNX Runtime, works out the orientation (reading the board's
+ coordinate labels with PaddleOCR when present) and prints the FEN, Lichess
+ analysis links or a rendered board. Models are downloaded to the XDG cache on
+ first use.
