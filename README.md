@@ -4,7 +4,9 @@ Chess position from an image: YOLOv8m piece/board detection on ONNX Runtime -> s
 
 ```
 chess-vision shot.png                 # ASCII board + Lichess links (white / black to move) + FEN
-cat shot.png | chess-vision        # or `-`: image from stdin, e.g. `wl-paste | chess-vision`, `grim -g "$(slurp)" - | chess-vision`
+cat shot.png | chess-vision           # from a piped file
+wl-paste | chess-vision               # paste from clipboard
+grim -g "$(slurp)" - | chess-vision   # or fish: grim -g (slurp) - | chess-vision -
 chess-vision shot.png -t b            # black to move: one link
 chess-vision shot.png -f fen          # pretty | ascii | fen | links | json
 chess-vision shot.png --orientation black --castling KQkq
